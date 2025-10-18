@@ -1,0 +1,16 @@
+.overviewHeader{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.mainBox{
+    display: grid;
+}
+
+.twoAndOneFRFrameBox{
+    grid-template-columns: 2fr 1fr;
+}
+
+.oneAndTwoFRFrameBox{
+    grid-template-columns: 1fr 2fr;
+}
