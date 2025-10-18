@@ -6,7 +6,7 @@
         echo "<h1 class'overviewTitle'> Portfolio Project ". $pageName . "</h1>";
         echo "</div>";
         echo "<div>";
-        echo "<p> buttons </p>"
+        echo "<p> buttons </p>";
         echo "</div>";
         echo "</header>";
     }
