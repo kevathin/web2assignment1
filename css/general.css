@@ -1,6 +1,8 @@
 .overviewHeader{
     display: grid;
     grid-template-columns: 3fr 1fr;
+    background-color: grey;
+    border: 1px solid black;
 }
 
 .mainBox{

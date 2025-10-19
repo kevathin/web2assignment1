@@ -1,5 +1,5 @@
 <?php 
-    include "includes/basicHTMLFunctions.php";
+    include "includes/HTMLFunctionManager.php";
 ?>
 
 
@@ -13,7 +13,6 @@
     <title>Project</title>
 </head>
 <body>
-    <?php produceHeader("Home");?>
     <?php produceBody("oneAndTwoFRFrameBox", "Home");?>
 </body>
 </html>

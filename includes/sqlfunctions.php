@@ -1,4 +1,6 @@
 <?php
+    
+    // god, i did not see that there was a pre existing database.... there goes like 2 and a half hours of wasted time
     function checkDB(){
         //if the DB is not setup it will create and fill the databases
         
