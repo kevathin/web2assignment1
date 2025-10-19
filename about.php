@@ -1,7 +1,6 @@
 <?php 
     include "includes/HTMLFunctionManager.php";
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,5 +12,6 @@
 </head>
 <body>
     <?php produceBody("twoAndOneFRFrameBox", "About");?>
+
 </body>
 </html>
