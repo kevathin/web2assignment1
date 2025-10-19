@@ -1,10 +1,7 @@
 <?php 
     include "includes/basicHTMLFunctions.php";
-    include "includes/sqlfunctions.php";
 ?>
-<?php
-    checkDB();
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
