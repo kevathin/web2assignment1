@@ -32,12 +32,8 @@
             }
 
         } elseif($pageTitle == "API"){
-            if(isset($_POST['linkType'])){
-                
-            }else{
-                produceAPIContent();
-            }
-            
+
+            produceAPIContent();
 
         } elseif($pageTitle == "About"){
 

@@ -78,8 +78,8 @@
 
         foreach($portfolioInfo as $symbol=>$values){
             $totalValue = $values['amount'] * $values['valuePerStock'];
-            echo "<p> <a href='".$values['weblink']."'>". $symbol ."</a></p>";
-            echo "<p> <a href='".$values['weblink']."'>". $values['cname'] ."</a></p>";
+            echo "<p> <a href='".$values['website']."'>". $symbol ."</a></p>";
+            echo "<p> <a href='".$values['website']."'>". $values['cname'] ."</a></p>";
             echo "<p>". $values['sector'] ."</p>";
             echo "<p>". $values['amount'] ."</p>";
             echo "<p>$". number_format($totalValue,2) ."</p>";
