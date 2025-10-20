@@ -54,7 +54,7 @@
 
                 echo "<div class='summaryBox'>";
                     echo "<h4>Total Value</h4>";
-                    echo "<p>".number_format($totalValue,2)."</p>";
+                    echo "<p>$".number_format($totalValue,2)."</p>";
                 echo "</div>";
             echo "</div>";
         echo "</div>";
@@ -82,7 +82,7 @@
             echo "<p> <a href='".$values['weblink']."'>". $values['cname'] ."</a></p>";
             echo "<p>". $values['sector'] ."</p>";
             echo "<p>". $values['amount'] ."</p>";
-            echo "<p>". number_format($totalValue,2) ."</p>";
+            echo "<p>$". number_format($totalValue,2) ."</p>";
             echo "<form method='POST' action='company.php' class='companyFormBox'>";
                 echo "<button type='submit' class='companyInfoButton' name='companyID' value='".$symbol."'>Company Information</button>";
             echo "</form>";

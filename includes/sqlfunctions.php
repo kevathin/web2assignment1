@@ -49,13 +49,15 @@
         $companyResult = $pdo->query($companySql);
         $company= $companyResult->fetch();
 
-        $returnList['name'] = $company;
-        $returnList['sector'] = $company;
-        $returnList['subindustry'] = $company;
-        $returnList['address'] = $company;
-        $returnList['exchange'] = $company;
-        $returnList['weblink'] = $company;
-        $returnList['description'] = $company;
+        $returnList['symbol'] = $company['symbol'];
+        $returnList['name'] = $company['name'];
+        $returnList['sector'] = $company['sector'];
+        $returnList['subindustry'] = $company['subindustry'];
+        $returnList['address'] = $company['address'];
+        $returnList['exchange'] = $company['exchange'];
+        $returnList['website'] = $company['website'];
+        $returnList['description'] = $company['description'];
+        $returnList['financials'] = $company['financials'];
 
         $historySql = "Select * FROM history WHERE symbol = '".$symbol."' ORDER BY date DESC;";
         $historyResult = $pdo->query($historySql);
@@ -115,7 +117,7 @@
             $tempList['sector'] = $company['sector'];
             $tempList['amount'] = $row['amount'];
             $tempList['valuePerStock'] = $history['close'];
-            $tempList['weblink'] = $company['website'];
+            $tempList['website'] = $company['website'];
 
             $returnList[$row['symbol']] = $tempList;
             
@@ -123,10 +125,6 @@
 
         $pdo = null;
         return $returnList;
-    }
-
-    function requestCompanyInformation($stockSymbol){
-
     }
 
 ?>

@@ -66,3 +66,7 @@ h4{
 .twoWideGrid{
     grid-column: span 2;
 }
+
+.boldText{
+    font-weight: bold;
+}
