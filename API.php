@@ -11,6 +11,6 @@
     <title>Project</title>
 </head>
 <body>
-    <?php produceBody("OneAndTwoFRFrameBox", "API");?>
+    <?php produceBody( "API");?>
 </body>
 </html>

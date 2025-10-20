@@ -11,7 +11,7 @@
     <title>Project</title>
 </head>
 <body>
-    <?php produceBody("twoAndOneFRFrameBox", "About");?>
+    <?php produceBody("About");?>
 
 </body>
 </html>

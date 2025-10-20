@@ -1,0 +1,91 @@
+#clientSection, #portfolioSummary, #portfolioDetails{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: grey;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#portfolioBox{
+    margin-left: 10px;
+}
+
+#portfolioSummary{
+    margin-bottom: 10px;
+}
+
+#clientList{
+    width: 100%;
+}
+
+.clientBox{
+    background-color: rgba(220, 221, 176, 0.832);
+    border: 1px solid black;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.clientPortfolioButton{
+    background-color: rgba(141, 141, 141, 0.722);
+    width: 80px;
+    height: 35px;
+}
+
+.clientForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#portfolioSummaryInfoBox{
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    gap: 10px;
+    width: 100%;
+}
+
+.summaryBox{
+    display: flex;
+    background-color: rgba(220, 221, 176, 0.832);
+    border: 1px solid black;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.summaryBox p {
+    font-size: 30px;
+    margin: 0px;
+}
+
+#portfolioDetailsBox{
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1.5fr 1fr 1fr 1fr;
+    width: 100%;
+}
+
+.portfolioAttributeHeader{
+    font-weight: bold;
+}
+
+.companyInfoButton{
+    background-color: rgba(141, 141, 141, 0.722);
+    width: 80px;
+    height: 35px;
+}
+
+.companyFormBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a:link, a:visited, a:hover, a:active{
+    color: black;
+}

@@ -1,164 +1,132 @@
 <?php
-    
-    // god, i did not see that there was a pre existing database.... there goes like 2 and a half hours of wasted time
-    function checkDB(){
-        //if the DB is not setup it will create and fill the databases
-        
-        $pdo = new PDO("sqlite:data/example.db");
+    // it feels weird but since include is like copying a pasting the files together, i don't need to use the ../ when using PDO
 
-        $createUsersTable = "CREATE TABLE users(
-            userID INTEGER PRIMARY KEY,
-            firstName TEXT,
-            lastName TEXT
-        );";
-        // DECIMAL (total digits, # of decimal points)
-        // history low and high value are within the past 5 years
-        $createStocksTable = "CREATE TABLE stocks(
-            stockID TEXT PRIMARY KEY,
-            stockName TEXT,
-            webLink TEXT,
-            financialWebLink TEXT,
-            stockDescription TEXT,
-            totalVol INTEGER,
-            averageVol INTEGER,
-            historyLowVal DECIMAL(10, 2),
-            historyHighVal DECIMAL(10, 2),
-            currentVal DECIMAL(10, 2)
-        );";
-
-        // portfolioID = userID-stockID
-        $createPortfolioTable = "CREATE TABLE portfolios(
-            portfolioID TEXT PRIMARY KEY,
-            userID INTEGER,
-            stockID TEXT,
-            amount INTEGER,
-            FOREIGN KEY (userID) REFERENCES users(userID),
-            FOREIGN KEY (stockID) REFERENCES stocks(stockID)
-        );";
-        //stockHistoryID = stockID-stockDate
-        //stockDate = yyyy-mm-dd
-        $createHistoryTable = "CREATE TABLE history(
-            stockHistoryID TEXT PRIMARY KEY,
-            stockID TEXT,
-            stockDATE TEXT, 
-            stockOpenVal DECIMAL(10, 2),
-            stockCloseVal DECIMAL(10, 2),
-            FOREIGN KEY (stockID) REFERENCES stocks(stockID)
-        );";
-        //$pdo->query('DROP TABLE history;');
-        //$pdo->query($createUsersTable);
-        //$pdo->query($createStocksTable);
-        //$pdo->query($createPortfolioTable);
-        //$pdo->query($createHistoryTable);
-        //users (specify order of attributes)
-        //Values (instance value of attribute)
-        //values (instance 1*), (instance 2*)... etc
-        $insertValuesOfUsers = "INSERT INTO users 
-            (userID, firstName, lastName) 
-            Values 
-            (001, 'Kevin', 'Bertasius'),  
-            (002, 'Kevin', 'Bacon'),
-            (003, 'John', 'Doe'),
-            (004, 'Jane', 'Doe'),
-            (005, 'Will', 'Smith'),
-            (006, 'Steve', 'Harvey'),
-            (007, 'Morgan', 'Freeman'),
-            (008, 'Ryan', 'Reynolds'),
-            (009, 'Ryan', 'Gosling'),
-            (010, 'Jim', 'Carrey')
-        ;";
-
-        $insertValuesOfStocks = "INSERT INTO stocks 
-            (stockID, stockName, webLink, financialWebLink, stockDescription, totalVol, averageVol, historyLowVal, historyHighVal, currentVal) 
-            Values 
-                (
-                    'es=f', 
-                    'S&P 500', 
-                    'https://finance.yahoo.com/quote/ES=F/',
-                    'N/A',
-                    'S&P 500 is a stock that contains the stocks of the top 500 companies',
-                    2695690000,
-                    2010000,
-                    3120.71,
-                    6800.00,
-                    6718.95
-                ),
-                (
-                    'GOOG',
-                    'Alphabet Inc.',
-                    'https://finance.yahoo.com/quote/GOOG/',
-                    'https://finance.yahoo.com/quote/GOOG/financials/',
-                    'Google is a big company',
-                    12100000000,
-                    19830000,
-                    75.73,
-                    257.58,
-                    253.79
-                ),
-                (
-                    'AMZN',
-                    'Amazon.com Inc.',
-                    'https://finance.yahoo.com/quote/AMZN/',
-                    'https://finance.yahoo.com/quote/AMZN/financials/',
-                    'Amazon is also a big company',
-                    10660000000,
-                    48800000,
-                    81.69,
-                    241.77,
-                    213.04
-                )
-        ;";
-
-        $insertValuesOfHistory = "INSERT INTO history 
-        (stockHistoryID, stockID, stockDate, stockOpenVal, stockCloseVal) 
-        Values 
-        ('es=f-2025-10-17','es=f','2025-10-17', 6659.25, 6718.95 ),
-        ('GOOG-2025-10-17','GOOG','2025-10-17', 251.35, 253.79),
-        ('AMZN-2025-10-17','AMZN','2025-10-17', 214.56, 213.04)
-        ;";
-
-        $insertValuesOfPortfolio = "INSERT INTO portfolios 
-        (portfolioID, userID, stockID, amount) 
-        Values 
-            ('001-es=f', 001, 'es=f', 1),
-            ('001-GOOG', 001, 'GOOG', 1),
-            ('001-AMZN', 001, 'AMZN', 1),
-
-            ('002-es=f', 002, 'es=f', 2),
-
-            ('003-GOOG', 003, 'GOOG', 3),
-            ('003-AMZN', 003, 'AMZN', 3),
-
-            ('004-GOOG', 004, 'GOOG', 4),
-
-            ('005-es=f', 005, 'es=f', 5),
-            ('005-GOOG', 005, 'GOOG', 5),
-            ('005-AMZN', 005, 'AMZN', 5),
-
-            ('006-GOOG', 006, 'GOOG', 6),
-            ('006-es=f', 006, 'es=f', 6),
-
-            ('007-AMZN', 007, 'AMZN', 7),
-            ('007-es=f', 007, 'es=f', 7),
-
-            ('008-AMZN', 008, 'AMZN', 8),
-
-            ('009-es=f', 009, 'es=f', 9),
-            ('009-AMZN', 009, 'AMZN', 9),
-            ('009-GOOG', 009, 'GOOG', 9),
-
-            ('010-GOOG', 010, 'GOOG', 10),
-            ('010-AMZN', 010, 'AMZN', 10)
-        ;";
-        //$pdo->query($insertValuesOfUsers);
-        //$pdo->query($insertValuesOfStocks);
-        //$pdo->query($insertValuesOfPortfolio);
-        //$pdo->query($insertValuesOfHistory);
+    // returns a list that is organized like this:
+    // $returnList = [id=>[fname=>value,lname=>value], etc];
+    function requestClientList(){
+        $pdo = new PDO("sqlite:data/stocks.db");
+        $sql = "SELECT firstname, lastname, id FROM users;";
+        $result = $pdo->query($sql);
+        $returnList = [];
+        while($row = $result->fetch()){
+            $tempList = [];
+            $tempList["fname"] = $row["firstname"];
+            $tempList["lname"] = $row["lastname"];
+            $returnList[$row["id"]] = $tempList; 
+        }
         $pdo = null;
+        return $returnList;
     }
 
-    function requestItem($queryString){
+    // returns a list that is organized like this:
+    // $returnList = [fname=>value, lname=>value];
+    function requestClientName($userID){
+        $pdo = new PDO("sqlite:data/stocks.db");
+        $sql = "SELECT firstname, lastname FROM users WHERE id = ?;";
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(1,$userID);
+        $statement->execute();
+        $result = $statement->fetch();
+
+        $returnList = [];
+        $returnList['fname'] = $result['firstname'];
+        $returnList['lname'] = $result['lastname'];
+
+        $pdo = null;
+        return $returnList;
+    }
+
+    // returns a list that is organized like this:
+    // (the return size is 3d nested list)
+    // $returnList = [name=>value,sector=>value, etc, history=>[date=>values, date=> values]];
+    function requestCompanyInfo($symbol){
+        $pdo = new PDO("sqlite:data/stocks.db");
+
+        $returnList = [];
+
+        $companySql = "SELECT * FROM companies WHERE symbol = '". $symbol. "';";
+
+        $companyResult = $pdo->query($companySql);
+        $company= $companyResult->fetch();
+
+        $returnList['name'] = $company;
+        $returnList['sector'] = $company;
+        $returnList['subindustry'] = $company;
+        $returnList['address'] = $company;
+        $returnList['exchange'] = $company;
+        $returnList['weblink'] = $company;
+        $returnList['description'] = $company;
+
+        $historySql = "Select * FROM history WHERE symbol = '".$symbol."' ORDER BY date DESC;";
+        $historyResult = $pdo->query($historySql);
+        $history = $historyResult->fetchAll();
+
+        //historyList contains lists of every date and info of the company
+        $historyList = [];
+
+        foreach($history as $row){
+            //temp contains the information of a specific day
+            $temp = [];
+            $temp['volume'] = $row['volume'];
+            $temp['open'] = $row['open'];
+            $temp['close'] = $row['close'];
+            $temp['high'] = $row['high'];
+            $temp['low'] = $row['low'];
+            $historyList[$row['date']] = $temp;
+        }
+
+        $returnList['history'] = $historyList;
+
+        $pdo = null;
+        return $returnList;
+    }
+
+    // returns a list that is organized like this:
+    // $returnList = [symbol=>[companyName=>value, sector=>value, amount=>value, valuePerStock=>value, companyLink=>value], etc]
+    function requestClientPortfolio($userID){
+        $pdo = new PDO("sqlite:data/stocks.db");
         
+        // instead of having one really complex sql search query i am going to have three simple search queries.
+        $portfolioSql = "SELECT symbol, amount FROM portfolio WHERE userID = ?;";
+        $statement = $pdo->prepare($portfolioSql);
+        $statement->bindValue(1,$userID);
+        $statement->execute();
+        $portfolioResult = $statement->fetchAll();
+
+        $returnList = [];
+
+        foreach($portfolioResult as $row){
+
+            // me getting the name of the company and the sector of which the company resides
+            $companySql = "SELECT name, sector, website FROM companies WHERE symbol = '". $row['symbol']. "';";
+
+            // me getting the most recent close value to determine the value of the stock
+            $historySql = "SELECT close FROM history WHERE symbol = '".$row['symbol']."' ORDER BY date DESC LIMIT 1;";
+
+            //both results should just be one row
+            $companyResult = $pdo->query($companySql);
+            $company= $companyResult->fetch();
+
+            $historyResult = $pdo->query($historySql);
+            $history = $historyResult->fetch();
+
+            $templist = [];
+            $tempList['cname'] = $company['name'];
+            $tempList['sector'] = $company['sector'];
+            $tempList['amount'] = $row['amount'];
+            $tempList['valuePerStock'] = $history['close'];
+            $tempList['weblink'] = $company['website'];
+
+            $returnList[$row['symbol']] = $tempList;
+            
+        }
+
+        $pdo = null;
+        return $returnList;
+    }
+
+    function requestCompanyInformation($stockSymbol){
+
     }
 
 ?>

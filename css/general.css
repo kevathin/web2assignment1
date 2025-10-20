@@ -1,6 +1,7 @@
 html, body{
     margin: 0px;
     padding: 0px;
+    background-color: rgb(182, 182, 182);
 }
 
 .overviewHeader{
@@ -8,16 +9,60 @@ html, body{
     grid-template-columns: 3fr 1fr;
     background-color: grey;
     border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.headerButtons{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+.tabButton{
+    border: 1px solid black;
+    width: 80px;
+    height: 40px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 0px;
+    background-color: rgb(182, 182, 182);
 }
 
 .mainBox{
     display: grid;
+    margin: 20px;
 }
 
 .twoAndOneFRFrameBox{
     grid-template-columns: 2fr 1fr;
+    
 }
 
 .oneAndTwoFRFrameBox{
     grid-template-columns: 1fr 2fr;
+}
+
+h2, h3, h4{
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+h2{
+    font-size: 35px;
+}
+
+h3{
+    font-size: 25px;
+}
+
+h4{
+    font-size: 20px;
+}
+
+.twoWideGrid{
+    grid-column: span 2;
 }
